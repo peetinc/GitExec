@@ -256,7 +256,10 @@ clear_variable="true" ./_framework/_setup/macOS-GitExec_Secrets.sh
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
+| `$GITHUB_ORG` | String | Yes | None | GitHub organization or username |
+| `$GITHUB_REPO` | String | Yes | None | Repository containing GitExec framework |
 | `$scriptUrl` | String | Yes | None | GitHub URL to PowerShell script |
+| `$GITHUB_VERSION` | String | No | `"main"` | Branch or tag to use |
 | `$runAsUser` | Boolean | No | `$false` | Run as logged-in users instead of SYSTEM |
 | `$useAPI` | Boolean | No | `$false` | Use GitHub API (bypasses CDN cache) |
 | `$runAsUserTimeout` | Integer | No | `600` | Timeout in seconds for user tasks |
@@ -282,20 +285,26 @@ Supported formats:
 
 ```powershell
 # Run as SYSTEM
-$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/Windows/system-info.ps1"
+$GITHUB_ORG = "YOUR_GITHUB_ORG"
+$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/Windows/system-info.ps1"
 .\_framework\_bootstrap\WIN-GitExec.ps1
 ```
 
 ```powershell
 # Run as all logged-in users
-$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/Windows/user-config.ps1"
+$GITHUB_ORG = "YOUR_GITHUB_ORG"
+$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/Windows/user-config.ps1"
 $runAsUser = $true
 .\_framework\_bootstrap\WIN-GitExec.ps1
 ```
 
 ```powershell
 # Use GitHub API for cache bypass
-$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/Windows/hotfix.ps1"
+$GITHUB_ORG = "YOUR_GITHUB_ORG"
+$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/Windows/hotfix.ps1"
 $useAPI = $true
 .\_framework\_bootstrap\WIN-GitExec.ps1
 ```
@@ -325,7 +334,10 @@ $useAPI = $true
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
+| `GITHUB_ORG` | String | Yes | None | GitHub organization or username |
+| `GITHUB_REPO` | String | Yes | None | Repository containing GitExec framework |
 | `scriptUrl` | String | Yes | None | GitHub URL to shell script |
+| `GITHUB_VERSION` | String | No | `"main"` | Branch or tag to use |
 | `runAsUser` | String | No | `"false"` | Run as logged-in users: `"true"` or `"false"` |
 | `useAPI` | String | No | `"false"` | Use GitHub API: `"true"` or `"false"` |
 | `runAsUserTimeout` | Integer | No | `600` | Timeout in seconds for user tasks |
@@ -352,20 +364,26 @@ Supported formats:
 
 ```bash
 # Run as root
-scriptUrl="https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/macOS/system-info.sh" \
+GITHUB_ORG="YOUR_GITHUB_ORG" \
+GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/macOS/system-info.sh" \
 ./_framework/_bootstrap/macOS-GitExec.sh
 ```
 
 ```bash
 # Run as all logged-in users
-scriptUrl="https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/macOS/user-config.sh" \
+GITHUB_ORG="YOUR_GITHUB_ORG" \
+GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/macOS/user-config.sh" \
 runAsUser="true" \
 ./_framework/_bootstrap/macOS-GitExec.sh
 ```
 
 ```bash
 # Use GitHub API for cache bypass
-scriptUrl="https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/macOS/hotfix.sh" \
+GITHUB_ORG="YOUR_GITHUB_ORG" \
+GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/macOS/hotfix.sh" \
 useAPI="true" \
 ./_framework/_bootstrap/macOS-GitExec.sh
 ```
@@ -517,13 +535,17 @@ security find-generic-password -s "com.gitexec.rsa-public-key" /Library/Keychain
 
 **Windows:**
 ```powershell
-$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/Windows/your-script.ps1"
+$GITHUB_ORG = "YOUR_GITHUB_ORG"
+$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/Windows/your-script.ps1"
 .\_framework\_bootstrap\WIN-GitExec.ps1
 ```
 
 **macOS:**
 ```bash
-scriptUrl="https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/RMM-Scripts/macOS/your-script.sh" \
+GITHUB_ORG="YOUR_GITHUB_ORG" \
+GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/macOS/your-script.sh" \
 ./_framework/_bootstrap/macOS-GitExec.sh
 ```
 
@@ -704,7 +726,9 @@ Control logging verbosity and retention:
 
 **Example:**
 ```powershell
-$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/script.ps1"
+$GITHUB_ORG = "YOUR_GITHUB_ORG"
+$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/script.ps1"
 $loggingMode = "FrameworkOnly"
 $logRetentionDays = 7
 .\_framework\_bootstrap\WIN-GitExec.ps1
@@ -716,7 +740,9 @@ Adjust timeout for long-running user scripts:
 
 **Windows:**
 ```powershell
-$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/long-task.ps1"
+$GITHUB_ORG = "YOUR_GITHUB_ORG"
+$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/long-task.ps1"
 $runAsUser = $true
 $runAsUserTimeout = 1800  # 30 minutes
 .\_framework\_bootstrap\WIN-GitExec.ps1
@@ -724,29 +750,42 @@ $runAsUserTimeout = 1800  # 30 minutes
 
 **macOS:**
 ```bash
-scriptUrl="https://github.com/YOUR_GITHUB_ORG/GitExec/blob/main/long-task.sh" \
+GITHUB_ORG="YOUR_GITHUB_ORG" \
+GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/long-task.sh" \
 runAsUser="true" \
 runAsUserTimeout=1800 \
 ./_framework/_bootstrap/macOS-GitExec.sh
 ```
 
-### Environment Variables (Bootstrap Scripts)
+### RMM Variables (Bootstrap Scripts)
 
-Configure framework behavior via environment variables:
+All variables are RMM-provided (no editing of bootstrap scripts required):
 
 **Windows:**
 ```powershell
-$env:GITEXEC_ORG = "yourorg"
-$env:GITEXEC_REPO = "GitExec"
-$env:GITEXEC_VERSION = "main"  # or "stable", "latest", "v1.0.0"
+# Required
+$GITHUB_ORG = "yourorg"
+$GITHUB_REPO = "your-scripts-repo"
+$scriptUrl = "https://github.com/yourorg/your-scripts-repo/blob/main/scripts/Windows/script.ps1"
+
+# Optional
+$GITHUB_VERSION = "main"  # or "stable", "v1.0.0"
+$runAsUser = $false
+$useAPI = $true
 .\_framework\_bootstrap\WIN-GitExec.ps1
 ```
 
 **macOS:**
 ```bash
-GITEXEC_ORG="yourorg" \
-GITEXEC_REPO="GitExec" \
-GITEXEC_VERSION="main" \
+# Required
+GITHUB_ORG="yourorg" \
+GITHUB_REPO="your-scripts-repo" \
+scriptUrl="https://github.com/yourorg/your-scripts-repo/blob/main/scripts/macOS/script.sh" \
+# Optional
+GITHUB_VERSION="main" \
+runAsUser="false" \
+useAPI="true" \
 ./_framework/_bootstrap/macOS-GitExec.sh
 ```
 
