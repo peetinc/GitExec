@@ -1,0 +1,220 @@
+# ============================================================================
+# macOS System Files
+# ============================================================================
+
+# General macOS
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+._*
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+Thumbs.db
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ============================================================================
+# Linux System Files
+# ============================================================================
+
+# General Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# Editor Files
+# ============================================================================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# IntelliJ/JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Vim
+*.swp
+*.swo
+*.swn
+.*.swp
+.*.swo
+.*.swn
+*~
+tags
+Session.vim
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# TextMate
+*.tmproj
+*.tmproject
+tmtags
+
+# ============================================================================
+# Development & Testing
+# ============================================================================
+
+# Test files and directories
+test/
+tests/
+*.test
+*.test.sh
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+*.temp
+backup/
+
+# Debug files
+*.debug
+debug/
+
+# ============================================================================
+# Configuration & Secrets
+# ============================================================================
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Configuration overrides
+config.local
+*.local.sh
+*.local
+
+# Credentials (never commit these!)
+credentials/
+secrets/
+*.pem
+*.key
+*.crt
+*.cer
+
+# ============================================================================
+# Syncro Specific (runtime/config files that shouldn't be in repo)
+# ============================================================================
+
+# Syncro configuration files with actual data
+InstanceSummary.json
+device.json
+settings.json
+
+# Test data with real information
+sample-data/
+real-data/
+
+# User-specific public keys
+my-public-key.asc
+tenant-key.asc
+*-public-key.asc
+
+# ============================================================================
+# PHP/Web Development
+# ============================================================================
+
+# Composer
+vendor/
+composer.phar
+
+# PHP runtime
+*.pid
+*.seed
+*.pid.lock
+
+# Deployment configs
+.htaccess
+.htpasswd
+
+# ============================================================================
+# Build & Package Files
+# ============================================================================
+
+# Archives
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+*.dmg
+*.iso
+
+# Package directories
+dist/
+build/
+release/
+
+# ============================================================================
+# Documentation Build Files
+# ============================================================================
+
+# Sphinx
+_build/
+_static/
+_templates/
+
+# MkDocs
+site/
+
+# ============================================================================
+# OS Generated Files
+# ============================================================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
