@@ -111,8 +111,8 @@ Once configured, execute any script from this repository. All variables are RMM-
 
 ```powershell
 # Set in your RMM platform
-$GITHUB_ORG = "YOUR_GITHUB_ORG"
-$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$github_Org = "YOUR_GITHUB_ORG"
+$github_Repo = "YOUR_SCRIPTS_REPO"
 $scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/Windows/example-script.ps1"
 .\_framework\_bootstrap\WIN-GitExec.ps1
 ```
@@ -121,8 +121,8 @@ $scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scr
 
 ```bash
 # Set in your RMM platform
-GITHUB_ORG="YOUR_GITHUB_ORG" \
-GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+github_Org="YOUR_GITHUB_ORG" \
+github_Repo="YOUR_SCRIPTS_REPO" \
 scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/macOS/example-script.sh" \
 ./_framework/_bootstrap/macOS-GitExec.sh
 ```
@@ -218,8 +218,8 @@ Bootstrap scripts download the core library from GitHub at runtime.
 **Windows:**
 
 ```powershell
-$GITHUB_ORG = "YOUR_GITHUB_ORG"
-$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$github_Org = "YOUR_GITHUB_ORG"
+$github_Repo = "YOUR_SCRIPTS_REPO"
 $scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/Windows/user-config.ps1"
 $runAsUser = $true
 .\_framework\_bootstrap\WIN-GitExec.ps1
@@ -228,8 +228,8 @@ $runAsUser = $true
 **macOS:**
 
 ```bash
-GITHUB_ORG="YOUR_GITHUB_ORG" \
-GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+github_Org="YOUR_GITHUB_ORG" \
+github_Repo="YOUR_SCRIPTS_REPO" \
 scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/macOS/user-setup.sh" \
 runAsUser="true" \
 ./_framework/_bootstrap/macOS-GitExec.sh
@@ -242,8 +242,8 @@ For immediate updates without waiting for CDN cache expiration:
 **Windows:**
 
 ```powershell
-$GITHUB_ORG = "YOUR_GITHUB_ORG"
-$GITHUB_REPO = "YOUR_SCRIPTS_REPO"
+$github_Org = "YOUR_GITHUB_ORG"
+$github_Repo = "YOUR_SCRIPTS_REPO"
 $scriptUrl = "https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/Windows/hotfix.ps1"
 $useAPI = $true
 .\_framework\_bootstrap\WIN-GitExec.ps1
@@ -252,8 +252,8 @@ $useAPI = $true
 **macOS:**
 
 ```bash
-GITHUB_ORG="YOUR_GITHUB_ORG" \
-GITHUB_REPO="YOUR_SCRIPTS_REPO" \
+github_Org="YOUR_GITHUB_ORG" \
+github_Repo="YOUR_SCRIPTS_REPO" \
 scriptUrl="https://github.com/YOUR_GITHUB_ORG/YOUR_SCRIPTS_REPO/blob/main/scripts/macOS/hotfix.sh" \
 useAPI="true" \
 ./_framework/_bootstrap/macOS-GitExec.sh

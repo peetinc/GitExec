@@ -19,8 +19,8 @@ $ErrorActionPreference = 'Stop'
 # Set ALL of these in your RMM platform before the script runs.
 #
 # REQUIRED:
-#   $GITHUB_ORG         Your GitHub organization or username
-#   $GITHUB_REPO        Repository name containing GitExec framework
+#   $github_Org         Your GitHub organization or username
+#   $github_Repo        Repository name containing GitExec framework
 #   $scriptUrl          Full GitHub URL to the script to execute
 #                       Formats: github.com/.../blob/... or raw.githubusercontent.com/...
 #
@@ -29,7 +29,7 @@ $ErrorActionPreference = 'Stop'
 #   $scriptName         Script filename (e.g., my-script.ps1)
 #
 # OPTIONAL:
-#   $GITHUB_VERSION     Branch or tag (default: main)
+#   $github_Branch      Branch or tag (default: main)
 #   $runAsUser          $true = run as each logged-in user, $false = run as SYSTEM (default: $false)
 #   $useAPI             $true = use GitHub API (bypasses CDN cache) (default: $false)
 #   $runAsUserTimeout   Seconds to wait for user scripts (default: 600)
@@ -40,16 +40,16 @@ $ErrorActionPreference = 'Stop'
 $PROJECT_VERSION = "1.0.0"
 
 # Validate required variables
-if (-not $GITHUB_ORG) { throw "GITHUB_ORG is required but not set. Configure this in your RMM platform." }
-if (-not $GITHUB_REPO) { throw "GITHUB_REPO is required but not set. Configure this in your RMM platform." }
+if (-not $github_Org) { throw "github_Org is required but not set. Configure this in your RMM platform." }
+if (-not $github_Repo) { throw "github_Repo is required but not set. Configure this in your RMM platform." }
 
 # Apply defaults for optional variables
-if (-not $GITHUB_VERSION) { $GITHUB_VERSION = "main" }
+if (-not $github_Branch) { $github_Branch = "main" }
 
 # Set runtime variables
-$GITEXEC_ORG = $GITHUB_ORG
-$GITEXEC_REPO = $GITHUB_REPO
-$GITEXEC_VERSION = $GITHUB_VERSION
+$GITEXEC_ORG = $github_Org
+$GITEXEC_REPO = $github_Repo
+$GITEXEC_BRANCH = $github_Branch
 
 # ====== THIN BOOTSTRAP FUNCTIONS ======
 # FROZEN: Only update if cryptographically necessary
@@ -242,7 +242,7 @@ function Test-ThinSignature {
 $GitHubPAT = Get-ThinGitHubPAT
 
 # Build URLs from configuration
-$BaseUrl = "https://raw.githubusercontent.com/$GITEXEC_ORG/$GITEXEC_REPO/$GITEXEC_VERSION"
+$BaseUrl = "https://raw.githubusercontent.com/$GITEXEC_ORG/$GITEXEC_REPO/$GITEXEC_BRANCH"
 $ModuleUrl = "$BaseUrl/_framework/_library/WIN-GitExec-core.psm1"
 $SigUrl = "$BaseUrl/_sig/_framework/_library/WIN-GitExec-core.psm1.sig"
 

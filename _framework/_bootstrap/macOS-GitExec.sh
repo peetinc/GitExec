@@ -17,8 +17,8 @@ set -e
 # Set ALL of these in your RMM platform before the script runs.
 #
 # REQUIRED:
-#   GITHUB_ORG          Your GitHub organization or username
-#   GITHUB_REPO         Repository name containing GitExec framework
+#   github_Org          Your GitHub organization or username
+#   github_Repo         Repository name containing GitExec framework
 #   scriptUrl           Full GitHub URL to the script to execute
 #                       Formats: github.com/.../blob/... or raw.githubusercontent.com/...
 #
@@ -27,7 +27,7 @@ set -e
 #   scriptName          Script filename (e.g., my-script.sh)
 #
 # OPTIONAL:
-#   GITHUB_VERSION      Branch or tag (default: main)
+#   github_Branch       Branch or tag (default: main)
 #   runAsUser           "true" = run as each logged-in user, "false" = run as root (default: "false")
 #   useAPI              "true" = use GitHub API (bypasses CDN cache) (default: "false")
 #   runAsUserTimeout    Seconds to wait for user scripts (default: 600)
@@ -38,22 +38,22 @@ set -e
 PROJECT_VERSION="1.0.0"
 
 # Validate required variables
-if [[ -z "$GITHUB_ORG" ]]; then
-    echo "[FATAL] GITHUB_ORG is required but not set. Configure this in your RMM platform." >&2
+if [[ -z "$github_Org" ]]; then
+    echo "[FATAL] github_Org is required but not set. Configure this in your RMM platform." >&2
     exit 1
 fi
-if [[ -z "$GITHUB_REPO" ]]; then
-    echo "[FATAL] GITHUB_REPO is required but not set. Configure this in your RMM platform." >&2
+if [[ -z "$github_Repo" ]]; then
+    echo "[FATAL] github_Repo is required but not set. Configure this in your RMM platform." >&2
     exit 1
 fi
 
 # Apply defaults for optional variables
-GITHUB_VERSION="${GITHUB_VERSION:-main}"
+github_Branch="${github_Branch:-main}"
 
 # Set runtime variables
-GITEXEC_ORG="$GITHUB_ORG"
-GITEXEC_REPO="$GITHUB_REPO"
-GITEXEC_VERSION="$GITHUB_VERSION"
+GITEXEC_ORG="$github_Org"
+GITEXEC_REPO="$github_Repo"
+GITEXEC_BRANCH="$github_Branch"
 
 # ====== THIN BOOTSTRAP FUNCTIONS ======
 # FROZEN: Only update if cryptographically necessary
@@ -95,7 +95,7 @@ thin_verify() {
 GITHUB_PAT=$(thin_get_github_pat)
 
 # Build URLs from configuration
-BASE_URL="https://raw.githubusercontent.com/$GITEXEC_ORG/$GITEXEC_REPO/$GITEXEC_VERSION"
+BASE_URL="https://raw.githubusercontent.com/$GITEXEC_ORG/$GITEXEC_REPO/$GITEXEC_BRANCH"
 LIB="$BASE_URL/_framework/_library/macOS-GitExec-core.sh"
 SIG="$BASE_URL/_sig/_framework/_library/macOS-GitExec-core.sh.sig"
 
