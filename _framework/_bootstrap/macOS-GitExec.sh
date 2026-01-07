@@ -13,24 +13,21 @@
 
 set -e
 
-# ====== CONFIGURATION ======
-# Set your GitHub organization/username and repo
-GITHUB_ORG="YOUR_GITHUB_ORG"
-GITHUB_REPO="GitExec"
-GITHUB_VERSION="main"
-
 # ====== RMM VARIABLES ======
-# Set these in your RMM platform before the script runs.
+# Set ALL of these in your RMM platform before the script runs.
 #
-# REQUIRED (choose one):
+# REQUIRED:
+#   GITHUB_ORG          Your GitHub organization or username
+#   GITHUB_REPO         Repository name containing GitExec framework
 #   scriptUrl           Full GitHub URL to the script to execute
 #                       Formats: github.com/.../blob/... or raw.githubusercontent.com/...
 #
-#   OR both of these:
+#   OR instead of scriptUrl, set both:
 #   scriptUrlBase       Base URL path (e.g., https://github.com/org/repo/blob/main/scripts/macOS)
 #   scriptName          Script filename (e.g., my-script.sh)
 #
 # OPTIONAL:
+#   GITHUB_VERSION      Branch or tag (default: main)
 #   runAsUser           "true" = run as each logged-in user, "false" = run as root (default: "false")
 #   useAPI              "true" = use GitHub API (bypasses CDN cache) (default: "false")
 #   runAsUserTimeout    Seconds to wait for user scripts (default: 600)
@@ -38,13 +35,25 @@ GITHUB_VERSION="main"
 #   logRetentionDays    Days to retain log files (default: 30)
 
 # ====== RUNTIME (don't edit below) ======
-# Project version (for User-Agent)
 PROJECT_VERSION="1.0.0"
 
-# Environment variables override configuration above
-GITEXEC_ORG="${GITEXEC_ORG:-$GITHUB_ORG}"
-GITEXEC_REPO="${GITEXEC_REPO:-$GITHUB_REPO}"
-GITEXEC_VERSION="${GITEXEC_VERSION:-$GITHUB_VERSION}"
+# Validate required variables
+if [[ -z "$GITHUB_ORG" ]]; then
+    echo "[FATAL] GITHUB_ORG is required but not set. Configure this in your RMM platform." >&2
+    exit 1
+fi
+if [[ -z "$GITHUB_REPO" ]]; then
+    echo "[FATAL] GITHUB_REPO is required but not set. Configure this in your RMM platform." >&2
+    exit 1
+fi
+
+# Apply defaults for optional variables
+GITHUB_VERSION="${GITHUB_VERSION:-main}"
+
+# Set runtime variables
+GITEXEC_ORG="$GITHUB_ORG"
+GITEXEC_REPO="$GITHUB_REPO"
+GITEXEC_VERSION="$GITHUB_VERSION"
 
 # ====== THIN BOOTSTRAP FUNCTIONS ======
 # FROZEN: Only update if cryptographically necessary
