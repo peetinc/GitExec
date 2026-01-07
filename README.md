@@ -34,10 +34,10 @@ GitExec/
 │   └── README.md           # Detailed framework documentation
 │
 ├── _bin/                    # Repository maintenance tools
-│   ├── GitExec-gen_sigs.sh
+│   ├── macOS-GitExec-gen_sigs.sh
 │   ├── WIN-GitExec-gen_sigs.ps1
 │   └── _setup/
-│       ├── GitExec-gen_rsa_keys.sh
+│       ├── macOS-GitExec-gen_rsa_keys.sh
 │       └── WIN-GitExec-gen_rsa_keys.ps1
 │
 ├── _key/                    # RSA public key for verification
@@ -326,7 +326,7 @@ Run once to create RSA key pair for signing (maintainer only):
 
 ```bash
 cd _bin/_setup
-./GitExec-gen_rsa_keys.sh
+./macOS-GitExec-gen_rsa_keys.sh
 ```
 
 **Windows:**
@@ -348,7 +348,7 @@ After adding or modifying scripts, generate new signatures:
 
 ```bash
 cd _bin
-./GitExec-gen_sigs.sh
+./macOS-GitExec-gen_sigs.sh
 ```
 
 **Windows:**
@@ -403,7 +403,7 @@ This creates/updates `.sig` files in the `_sig/` folder mirroring repository str
    - macOS scripts: `RMM-Scripts/macOS/`
 2. Test locally to ensure proper functionality
 3. Commit with descriptive message following conventions
-4. Generate signatures: `cd _bin && ./GitExec-gen_sigs.sh` (or Windows equivalent)
+4. Generate signatures: `cd _bin && ./macOS-GitExec-gen_sigs.sh` (or Windows equivalent)
 5. Push to GitHub
 
 ### Script Naming Conventions

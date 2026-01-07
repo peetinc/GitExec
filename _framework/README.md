@@ -655,7 +655,7 @@ Solution:
 Symptoms: "Invalid signature", "Signature verification failed"
 
 Solution:
-1. Regenerate signatures: Run `GitExec-gen_sigs.sh` or `WIN-GitExec-gen_sigs.ps1`
+1. Regenerate signatures: Run `macOS-GitExec-gen_sigs.sh` or `WIN-GitExec-gen_sigs.ps1`
 2. Verify RSA public key is correct
 3. Confirm script has not been modified outside of repository
 4. Check that signature file exists in `_sig/` directory
@@ -792,8 +792,8 @@ useAPI="true" \
 ## Related Documentation
 
 - **Main README:** `../README.md` - Project overview and quick start
-- **Signature Generation:** `../_bin/GitExec-gen_sigs.sh` - Generate script signatures
-- **Key Generation:** `../_bin/_setup/GitExec-gen_rsa_keys.sh` - Generate RSA key pair
+- **Signature Generation:** `../_bin/macOS-GitExec-gen_sigs.sh` - Generate script signatures
+- **Key Generation:** `../_bin/_setup/macOS-GitExec-gen_rsa_keys.sh` - Generate RSA key pair
 - **Public Key:** `../_key/AC-RMM_RSA_public.key` - RSA public key for distribution
 
 ## Version Information
