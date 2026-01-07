@@ -138,6 +138,9 @@ secrets/
 *.crt
 *.cer
 
+# Private directory (local files not for repo)
+private/
+
 # ============================================================================
 # Syncro Specific (runtime/config files that shouldn't be in repo)
 # ============================================================================
