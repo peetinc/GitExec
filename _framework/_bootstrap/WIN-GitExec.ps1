@@ -8,7 +8,6 @@
   ALL business logic is in the module - this just bootstraps it
 
 .NOTES
-  Version: 1.0.0
   Copyright (C) 2026 Peet, Inc.
   Licensed under GPLv2
 #>
@@ -251,7 +250,7 @@ $TempSig = "$TempModule.sig"
 
 # Create headers with authentication
 $Headers = @{
-    Authorization = "token $GitHubPAT"
+    Authorization = "Bearer $GitHubPAT"
     "User-Agent" = "GitExec/$PROJECT_VERSION"
 }
 

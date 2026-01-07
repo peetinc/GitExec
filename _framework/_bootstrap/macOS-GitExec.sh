@@ -1,7 +1,6 @@
 #!/bin/bash
 ################################################################################
 # macOS-GitExec.sh (Bootstrap)
-# Version: 1.0.0
 #
 # Ultra-minimal bootstrap script for GitExec framework
 # Downloads, verifies, and sources the GitExec core library
@@ -61,16 +60,13 @@ GITEXEC_BRANCH="$github_Branch"
 # Minimal GitHub PAT retrieval
 thin_get_github_pat() {
     local pat
-    pat=$(security find-generic-password \
+    if ! pat=$(security find-generic-password \
         -s "com.gitexec.github-pat" \
         -a "gitexec_pat" \
-        -w /Library/Keychains/System.keychain 2>/dev/null)
-
-    if [[ $? -ne 0 ]] || [[ -z "$pat" ]]; then
-        echo "[ERROR] No PAT found." >&2
+        -w /Library/Keychains/System.keychain 2>/dev/null) || [[ -z "$pat" ]]; then
+        echo "[ERROR] No PAT found. Run macOS-GitExec_Secrets.sh first." >&2
         exit 1
     fi
-
     echo "$pat"
 }
 
@@ -113,8 +109,8 @@ chmod 600 "$T" "$T_SIG"
 trap "rm -f '$T' '$T_SIG'" EXIT
 
 # Download library with authentication
-curl -sSL \
-    -H "Authorization: token $GITHUB_PAT" \
+curl -fsSL \
+    -H "Authorization: Bearer $GITHUB_PAT" \
     -H "User-Agent: GitExec/$PROJECT_VERSION" \
     "$LIB" -o "$T" 2>/dev/null || {
     echo "[ERROR] Library download failed from: $LIB" >&2
@@ -122,8 +118,8 @@ curl -sSL \
 }
 
 # Download signature with authentication
-curl -sSL \
-    -H "Authorization: token $GITHUB_PAT" \
+curl -fsSL \
+    -H "Authorization: Bearer $GITHUB_PAT" \
     -H "User-Agent: GitExec/$PROJECT_VERSION" \
     "$SIG" -o "$T_SIG" 2>/dev/null || {
     echo "[ERROR] Signature download failed from: $SIG" >&2
