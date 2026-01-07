@@ -68,9 +68,7 @@
 #   - Never commit this script with hardcoded secrets to version control
 #
 # NOTES
-#   Version: 1.0.0
 #   Project: GitExec
-#   Revised: 2025-10-21
 #   Compatible with: macOS 10.12+, SyncroRMM, other RMM platforms
 #
 #   Changes in v2.0.1:
@@ -172,7 +170,7 @@ KEYCHAIN_SERVICE_RSA="com.gitexec.rsa-public-key"
 KEYCHAIN_ACCOUNT_RSA="gitexec_rsa_pub"
 KEYCHAIN_LABEL_RSA="GitExec RSA Public Key"
 
-SCRIPT_VERSION="1.0.0"
+SCRIPT_VERSION="1.0.1"
 
 # Color codes for output
 RED='\033[0;31m'

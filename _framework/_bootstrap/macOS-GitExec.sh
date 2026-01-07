@@ -34,7 +34,7 @@ set -e
 #   logRetentionDays    Days to retain log files (default: 30)
 
 # ====== RUNTIME (don't edit below) ======
-PROJECT_VERSION="1.0.0"
+PROJECT_VERSION="1.0.1"
 
 # Validate required variables
 if [[ -z "$github_Org" ]]; then

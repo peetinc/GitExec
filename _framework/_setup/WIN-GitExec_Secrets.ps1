@@ -71,9 +71,7 @@
   Must be run as SYSTEM (LocalSystem).
 
 .NOTES
-  Version: 1.0.0
   Project: GitExec
-  Revised: 2025-10-21
   Inspired by TheFramework project: https://github.com/ByteSizedITGuy/TheFramework
   This implementation includes substantial modifications and enhancements for GitExec
   Changes in v2.0.1:

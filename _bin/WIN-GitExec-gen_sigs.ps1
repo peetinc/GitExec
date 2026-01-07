@@ -18,9 +18,7 @@
 #   - Signatures saved in _sig\ folder (mirrors repository structure)
 #
 # NOTES
-#   Version: 1.0.0
 #   Project: GitExec
-#   Last Updated: 2025-10-21
 #
 # LICENSE
 #   Copyright (C) 2026 Peet, Inc.
@@ -73,7 +71,7 @@ $ErrorActionPreference = 'Stop'
 function Show-Help {
     $helpText = @"
 
-GitExec Signature Generator v1.0.0 (Windows)
+GitExec Signature Generator v1.0.1 (Windows)
 
 SYNOPSIS
   Generate RSA signatures for all scripts in the repository

@@ -428,30 +428,9 @@ This creates/updates `.sig` files in the `_sig/` folder mirroring repository str
 - ✅ Test on clean endpoints before production deployment
 - ✅ Document any external dependencies or requirements
 
-## Version Information
+## Version
 
-**Current Version:** 1.0.0
-
-**Release Date:** 2025-10-21
-
-**Project Name:** GitExec
-
-### Version History
-
-**v1.0.0 (2025-10-21)**
-
-- Initial stable release of GitExec framework
-- Dual-secret security model (GitHub PAT + RSA public key)
-- Cross-platform support (Windows and macOS)
-- Modular bootstrap architecture
-- Signature verification infrastructure
-- Secure credential storage using DPAPI and Keychain
-- Multi-user execution support
-- Comprehensive logging and error handling
-
-### Previous Project Name
-
-Formerly known as RMMSecureGitRunner. Renamed to GitExec for clarity and brevity.
+See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
 
 ## License
 

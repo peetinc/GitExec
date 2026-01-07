@@ -26,9 +26,7 @@
 #     Account: Current user
 #
 # NOTES
-#   Version: 1.0.0
 #   Project: GitExec
-#   Last Updated: 2025-10-21
 #
 # LICENSE
 #   Copyright (C) 2026 Peet, Inc.
@@ -47,7 +45,7 @@ NC='\033[0m'
 # Function to show help
 show_help() {
     cat << EOF
-$(echo -e "${CYAN}GitExec RSA Key Generator v2.0.1${NC}")
+$(echo -e "${CYAN}GitExec RSA Key Generator v1.0.1${NC}")
 
 $(echo -e "${YELLOW}SYNOPSIS${NC}")
   Generate RSA key pair for GitExec script signing

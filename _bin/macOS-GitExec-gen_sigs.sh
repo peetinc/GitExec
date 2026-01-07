@@ -20,9 +20,7 @@
 #   - Signatures saved in _sig/ folder (mirrors repository structure)
 #
 # NOTES
-#   Version: 1.0.0
 #   Project: GitExec
-#   Last Updated: 2025-10-21
 #
 # LICENSE
 #   Copyright (C) 2026 Peet, Inc.
@@ -41,7 +39,7 @@ NC='\033[0m'
 # Function to show help
 show_help() {
     cat << EOF
-$(echo -e "${CYAN}GitExec Signature Generator v2.0.2${NC}")
+$(echo -e "${CYAN}GitExec Signature Generator v1.0.1${NC}")
 
 $(echo -e "${YELLOW}SYNOPSIS${NC}")
   Generate RSA signatures for all scripts in the repository

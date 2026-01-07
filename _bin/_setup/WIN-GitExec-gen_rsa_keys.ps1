@@ -24,9 +24,7 @@
 #     User: Current user
 #
 # NOTES
-#   Version: 1.0.0
 #   Project: GitExec
-#   Last Updated: 2025-10-21
 #
 # LICENSE
 #   Copyright (C) 2026 Peet, Inc.
@@ -66,7 +64,7 @@ $ErrorActionPreference = 'Stop'
 function Show-Help {
     $helpText = @"
 
-GitExec RSA Key Generator v1.0.0 (Windows)
+GitExec RSA Key Generator v1.0.1 (Windows)
 
 SYNOPSIS
   Generate RSA key pair for GitExec script signing

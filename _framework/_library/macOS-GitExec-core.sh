@@ -1,7 +1,6 @@
 #!/bin/bash
 ################################################################################
 # macOS-GitExec-core.sh
-# Version: 1.0.0
 #
 # Core library for GitExec framework
 # Contains all business logic, functions, and execution code
@@ -98,7 +97,7 @@ normalize_boolean_variables() {
 
 # ====== CONFIGURATION ======
 PROJECT_NAME="GitExec"
-PROJECT_VERSION="1.0.0"
+PROJECT_VERSION="1.0.1"
 
 # ====== CONSTANTS ======
 KEYCHAIN_SERVICE_PAT="com.gitexec.github-pat"

@@ -113,8 +113,6 @@ Minimal bootstrap scripts that download core functionality from GitHub at runtim
 
 **Purpose:** One-time configuration of GitHub PAT and RSA public key on Windows endpoints.
 
-**Version:** 1.0.0
-
 **Requirements:**
 - Must run as SYSTEM (LocalSystem account)
 - PowerShell 5.1 or later
@@ -177,8 +175,6 @@ $clear_variable = $true
 ### macOS-GitExec_Secrets.sh
 
 **Purpose:** One-time configuration of GitHub PAT and RSA public key on macOS endpoints.
-
-**Version:** 1.0.0
 
 **Requirements:**
 - Must run as root (sudo)
@@ -244,8 +240,6 @@ clear_variable="true" ./_framework/_setup/macOS-GitExec_Secrets.sh
 ### WIN-GitExec.ps1 (Bootstrap)
 
 **Purpose:** Download and execute PowerShell scripts from GitHub repository.
-
-**Version:** 1.0.0
 
 **Requirements:**
 - Secrets must be configured first (using WIN-GitExec_Secrets.ps1)
@@ -321,8 +315,6 @@ $useAPI = $true
 ### macOS-GitExec.sh (Bootstrap)
 
 **Purpose:** Download and execute shell scripts from GitHub repository.
-
-**Version:** 1.0.0
 
 **Requirements:**
 - Secrets must be configured first (using macOS-GitExec_Secrets.sh)
@@ -796,11 +788,9 @@ useAPI="true" \
 - **Key Generation:** `../_bin/_setup/macOS-GitExec-gen_rsa_keys.sh` - Generate RSA key pair
 - **Public Key:** `../_key/AC-RMM_RSA_public.key` - RSA public key for distribution
 
-## Version Information
+## Version
 
-**Framework Version:** 1.0.0
-
-**Last Updated:** 2025-10-21
+See [CHANGELOG.md](../CHANGELOG.md) for version history and release notes.
 
 **License:** GNU General Public License v2.0 (GPLv2)
 

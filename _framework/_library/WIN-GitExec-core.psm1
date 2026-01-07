@@ -8,14 +8,13 @@
   This file is downloaded and imported by the thin wrapper script
 
 .NOTES
-  Version: 1.0.0
   Copyright (C) 2026 Peet, Inc.
   Licensed under GPLv2
 #>
 
 # ====== MODULE VARIABLES ======
 $script:ProjectName = 'GitExec'
-$script:ProjectVersion = '1.0.0'
+$script:ProjectVersion = '1.0.1'
 
 $script:SECRET_NAME_PAT = 'GitExecPAT'
 $script:SECRET_NAME_RSA = 'GitExecRSA'
