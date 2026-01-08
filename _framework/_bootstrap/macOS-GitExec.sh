@@ -34,7 +34,7 @@ set -e
 #   logRetentionDays    Days to retain log files (default: 30)
 
 # ====== RMM DETECTION & VARIABLE TRANSLATION ======
-# Gorelo RMM uses text substitution: $gorelo:varName → 'value'
+# Gorelo RMM uses text substitution: $gorelo':'varName → 'value'
 if [[ "${BASH_SOURCE[0]}" == /Library/Gorelo/Agent/AppData/Script/* ]]; then
     GITEXEC_RMM="gorelo"
     github_Org="$gorelo:github_Org"

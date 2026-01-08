@@ -36,7 +36,7 @@ $ErrorActionPreference = 'Stop'
 #   $logRetentionDays   Days to retain log files (default: 30)
 
 # ====== RMM DETECTION & VARIABLE TRANSLATION ======
-# Gorelo RMM uses text substitution: $gorelo:varName → 'value'
+# Gorelo RMM uses text substitution: $gorelo':'varName → 'value'
 if ($PSCommandPath -like 'C:\Program Files\Gorelo\Agent\AppData\Scripts\*') {
     $GITEXEC_RMM = 'gorelo'
     $github_Org = $gorelo:github_Org

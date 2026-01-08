@@ -101,7 +101,7 @@
 ################################################################################
 
 # ====== RMM DETECTION & VARIABLE TRANSLATION ======
-# Gorelo RMM uses text substitution: $gorelo:varName → 'value'
+# Gorelo RMM uses text substitution: $gorelo':'varName → 'value'
 if [[ "${BASH_SOURCE[0]}" == /Library/Gorelo/Agent/AppData/Script/* ]]; then
     GITEXEC_RMM="gorelo"
     GitExec_GitHubPAT="$gorelo:GitExec_GitHubPAT"

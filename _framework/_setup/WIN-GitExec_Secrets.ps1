@@ -116,7 +116,7 @@
 #>
 
 # ====== RMM DETECTION & VARIABLE TRANSLATION ======
-# Gorelo RMM uses text substitution: $gorelo:varName → 'value'
+# Gorelo RMM uses text substitution: $gorelo':'varName → 'value'
 if ($PSCommandPath -like 'C:\Program Files\Gorelo\Agent\AppData\Scripts\*') {
     $GITEXEC_RMM = 'gorelo'
     $GitExec_GitHubPAT = $gorelo:GitExec_GitHubPAT
