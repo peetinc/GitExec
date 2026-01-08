@@ -341,12 +341,7 @@ if (-not $clear_variable) {
         Write-Log -Level ERROR -Message "Placeholder RSA key detected - replace with actual public key"
         exit 1
     }
-
-    if ($GitExec_RSA_Pub -notmatch "-----BEGIN PUBLIC KEY-----" -or
-        $GitExec_RSA_Pub -notmatch "-----END PUBLIC KEY-----") {
-        Write-Log -Level ERROR -Message "RSA key must be in PEM format with BEGIN/END markers"
-        exit 1
-    }
+    # Note: PEM headers are optional - raw base64 is also accepted (useful for Gorelo/RMMs that can't do multiline)
 }
 
 # ====== HELPER FUNCTIONS ======
@@ -355,16 +350,20 @@ function Validate-RSAPublicKey {
 
     Write-Log -Level INFO -Message "Validating RSA public key format..."
 
-    # Check for PEM markers (already done in validation, but double-check)
-    if ($Key -notmatch "-----BEGIN PUBLIC KEY-----" -or
-        $Key -notmatch "-----END PUBLIC KEY-----") {
-        throw "RSA public key must be in PEM format with BEGIN/END markers"
-    }
+    # Check if PEM format (with headers) or raw base64
+    $hasPemHeaders = ($Key -match "-----BEGIN PUBLIC KEY-----")
 
-    # Extract base64 content - strip markers and ALL whitespace
-    $base64Content = $Key -replace "-----BEGIN PUBLIC KEY-----","" `
-                          -replace "-----END PUBLIC KEY-----","" `
-                          -replace "[\s\r\n\t]",""
+    if ($hasPemHeaders) {
+        Write-Log -Level INFO -Message "Detected PEM format with headers"
+        # Extract base64 content - strip markers and ALL whitespace
+        $base64Content = $Key -replace "-----BEGIN PUBLIC KEY-----","" `
+                              -replace "-----END PUBLIC KEY-----","" `
+                              -replace "[\s\r\n\t]",""
+    } else {
+        Write-Log -Level INFO -Message "Detected raw base64 format (no PEM headers)"
+        # Just strip whitespace
+        $base64Content = $Key -replace "[\s\r\n\t]",""
+    }
 
     if ([string]::IsNullOrWhiteSpace($base64Content)) {
         throw "No base64 content found in RSA public key"
@@ -372,8 +371,12 @@ function Validate-RSAPublicKey {
 
     # Validate it's decodable base64
     try {
-        $null = [System.Convert]::FromBase64String($base64Content)
-        Write-Log -Level OK -Message "RSA public key validated (base64 decode successful)"
+        $decoded = [System.Convert]::FromBase64String($base64Content)
+        # Basic sanity check - RSA-4096 public key should be ~550 bytes
+        if ($decoded.Length -lt 100) {
+            throw "Key too short - expected RSA public key"
+        }
+        Write-Log -Level OK -Message "RSA public key validated (base64 decode successful, $($decoded.Length) bytes)"
     } catch {
         throw "Invalid base64 content in RSA public key: $($_.Exception.Message)"
     }
