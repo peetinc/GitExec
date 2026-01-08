@@ -306,13 +306,24 @@ catch {
     Write-Host "[ERROR] Bootstrap failed: $($_.Exception.Message)" -ForegroundColor Red
     # Debug output for troubleshooting
     Write-Host "`n[DEBUG] Variables:" -ForegroundColor Yellow
-    Write-Host "  GITEXEC_ORG:    $GITEXEC_ORG"
-    Write-Host "  GITEXEC_REPO:   $GITEXEC_REPO"
-    Write-Host "  GITEXEC_BRANCH: $GITEXEC_BRANCH"
-    Write-Host "  ModuleUrl:      $ModuleUrl"
-    Write-Host "  SigUrl:         $SigUrl"
-    Write-Host "  TempModule:     $TempModule (exists: $(Test-Path $TempModule -ErrorAction SilentlyContinue))"
-    Write-Host "  TempSig:        $TempSig (exists: $(Test-Path $TempSig -ErrorAction SilentlyContinue))"
+    Write-Host "  GITEXEC_RMM:      $GITEXEC_RMM"
+    Write-Host "  GITEXEC_ORG:      $GITEXEC_ORG"
+    Write-Host "  GITEXEC_REPO:     $GITEXEC_REPO"
+    Write-Host "  GITEXEC_BRANCH:   $GITEXEC_BRANCH"
+    Write-Host "  scriptUrl:        $scriptUrl"
+    Write-Host "  scriptUrlBase:    $scriptUrlBase"
+    Write-Host "  scriptName:       $scriptName"
+    Write-Host "  runAsUser:        $runAsUser"
+    Write-Host "  useAPI:           $useAPI"
+    Write-Host "  runAsUserTimeout: $runAsUserTimeout"
+    Write-Host "  loggingMode:      $loggingMode"
+    Write-Host "  logRetentionDays: $logRetentionDays"
+    Write-Host "  ModuleUrl:        $ModuleUrl"
+    Write-Host "  SigUrl:           $SigUrl"
+    $modSize = if (Test-Path $TempModule) { (Get-Item $TempModule).Length } else { 0 }
+    $sigSize = if (Test-Path $TempSig) { (Get-Item $TempSig).Length } else { 0 }
+    Write-Host "  TempModule:       $TempModule (exists: $(Test-Path $TempModule), size: $modSize)"
+    Write-Host "  TempSig:          $TempSig (exists: $(Test-Path $TempSig), size: $sigSize)"
     exit 1
 }
 finally {
