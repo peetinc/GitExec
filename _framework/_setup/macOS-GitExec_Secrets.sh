@@ -104,10 +104,10 @@
 # Gorelo RMM uses text substitution: $gorelo':'varName → 'value'
 if [[ "${BASH_SOURCE[0]}" == /Library/Gorelo/Agent/AppData/Script/* ]]; then
     GITEXEC_RMM="gorelo"
-    GitExec_GitHubPAT="$gorelo:GitExec_GitHubPAT"
-    GitExec_RSA_Pub="$gorelo:GitExec_RSA_Pub"
-    force_update="$gorelo:force_update"
-    clear_variable="$gorelo:clear_variable"
+    GitExec_GitHubPAT=$gorelo:GitExec_GitHubPAT
+    GitExec_RSA_Pub=$gorelo:GitExec_RSA_Pub
+    force_update=$gorelo:force_update
+    clear_variable=$gorelo:clear_variable
 fi
 
 # ====== NORMALIZE BOOLEAN VARIABLES ======
