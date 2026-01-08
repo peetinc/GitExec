@@ -123,6 +123,8 @@ if ($PSCommandPath -like 'C:\Program Files\Gorelo\Agent\AppData\Scripts\*') {
     $GitExec_RSA_Pub = $gorelo:GitExec_RSA_Pub
     $force_update = $gorelo:force_update
     $clear_variable = $gorelo:clear_variable
+    # SECURITY: Self-destruct - secrets are now in memory, delete script with plaintext values
+    cmd /c "ping -n 1 127.0.0.1 >nul & del `"$PSCommandPath`"" 2>$null
 }
 
 # ====== SAFE ARRAY PARSER (No Invoke-Expression) ======
