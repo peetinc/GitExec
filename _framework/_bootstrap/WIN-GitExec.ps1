@@ -42,7 +42,7 @@ if ($PSCommandPath -like 'C:\Program Files\Gorelo\Agent\AppData\Scripts\*') {
     $github_Org = $gorelo:github_Org
     $github_Repo = $gorelo:github_Repo
     $github_Branch = $gorelo:github_Branch
-    $scriptUrl = $gorelo:scriptUrl
+    # $scriptUrl = $gorelo':'scriptUrl
     $scriptUrlBase = $gorelo:scriptUrlBase
     $scriptName = $gorelo:scriptName
     $runAsUser = $gorelo:runAsUser
