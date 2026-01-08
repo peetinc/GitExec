@@ -236,7 +236,12 @@ if ($env:SyncroModule) {
     } catch {
         Write-Warning "SyncroModule not available - continuing without it"
     }
-    
+
+    Convert-SyncroVariables
+}
+
+# Gorelo variables also need normalization (booleans come as strings)
+if ($GITEXEC_RMM -eq 'gorelo') {
     Convert-SyncroVariables
 }
 
