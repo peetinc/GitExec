@@ -33,6 +33,23 @@ set -e
 #   loggingMode         "None", "FrameworkOnly", or "Full" (default: "Full")
 #   logRetentionDays    Days to retain log files (default: 30)
 
+# ====== RMM DETECTION & VARIABLE TRANSLATION ======
+# Gorelo RMM uses text substitution: $gorelo:varName → 'value'
+if [[ "${BASH_SOURCE[0]}" == /Library/Gorelo/Agent/AppData/Script/* ]]; then
+    GITEXEC_RMM="gorelo"
+    github_Org="$gorelo:github_Org"
+    github_Repo="$gorelo:github_Repo"
+    github_Branch="$gorelo:github_Branch"
+    scriptUrl="$gorelo:scriptUrl"
+    scriptUrlBase="$gorelo:scriptUrlBase"
+    scriptName="$gorelo:scriptName"
+    runAsUser="$gorelo:runAsUser"
+    useAPI="$gorelo:useAPI"
+    runAsUserTimeout="$gorelo:runAsUserTimeout"
+    loggingMode="$gorelo:loggingMode"
+    logRetentionDays="$gorelo:logRetentionDays"
+fi
+
 # ====== RUNTIME (don't edit below) ======
 PROJECT_VERSION="1.0.1"
 

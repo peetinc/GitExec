@@ -100,6 +100,16 @@
 #   See <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
 ################################################################################
 
+# ====== RMM DETECTION & VARIABLE TRANSLATION ======
+# Gorelo RMM uses text substitution: $gorelo:varName → 'value'
+if [[ "${BASH_SOURCE[0]}" == /Library/Gorelo/Agent/AppData/Script/* ]]; then
+    GITEXEC_RMM="gorelo"
+    GitExec_GitHubPAT="$gorelo:GitExec_GitHubPAT"
+    GitExec_RSA_Pub="$gorelo:GitExec_RSA_Pub"
+    force_update="$gorelo:force_update"
+    clear_variable="$gorelo:clear_variable"
+fi
+
 # ====== NORMALIZE BOOLEAN VARIABLES ======
 # This must run before configuration to convert yes/no, $true/$false, etc.
 normalize_boolean_variables() {
