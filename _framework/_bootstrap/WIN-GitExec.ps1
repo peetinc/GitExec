@@ -304,6 +304,15 @@ try {
 }
 catch {
     Write-Host "[ERROR] Bootstrap failed: $($_.Exception.Message)" -ForegroundColor Red
+    # Debug output for troubleshooting
+    Write-Host "`n[DEBUG] Variables:" -ForegroundColor Yellow
+    Write-Host "  GITEXEC_ORG:    $GITEXEC_ORG"
+    Write-Host "  GITEXEC_REPO:   $GITEXEC_REPO"
+    Write-Host "  GITEXEC_BRANCH: $GITEXEC_BRANCH"
+    Write-Host "  ModuleUrl:      $ModuleUrl"
+    Write-Host "  SigUrl:         $SigUrl"
+    Write-Host "  TempModule:     $TempModule (exists: $(Test-Path $TempModule -ErrorAction SilentlyContinue))"
+    Write-Host "  TempSig:        $TempSig (exists: $(Test-Path $TempSig -ErrorAction SilentlyContinue))"
     exit 1
 }
 finally {
