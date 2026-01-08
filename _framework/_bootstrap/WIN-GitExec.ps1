@@ -313,6 +313,8 @@ catch {
     Write-Host "  scriptUrl:        $scriptUrl"
     Write-Host "  scriptUrlBase:    $scriptUrlBase"
     Write-Host "  scriptName:       $scriptName"
+    $builtScriptUrl = if ($scriptUrl) { $scriptUrl } elseif ($scriptUrlBase -and $scriptName) { "$($scriptUrlBase.TrimEnd('/'))/$scriptName" } else { "(not set)" }
+    Write-Host "  builtScriptUrl:   $builtScriptUrl"
     Write-Host "  runAsUser:        $runAsUser"
     Write-Host "  useAPI:           $useAPI"
     Write-Host "  runAsUserTimeout: $runAsUserTimeout"
