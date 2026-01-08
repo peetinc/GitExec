@@ -99,7 +99,7 @@
     - Removed param() block for RMM compatibility
     - Reorganized constants to be more visible and customizable
     - Added timestamp logging for all operations
-    - Added Convert-SyncroVariables for automatic type conversion (booleans, integers, arrays)
+    - Added Convert-RMMVariables for automatic type conversion (booleans, integers, arrays)
     - Simplified array security check to avoid quote parsing issues
 
 .DISCLAIMER
@@ -178,7 +178,7 @@ function ConvertTo-SafeArray {
 }
 
 # ====== STRING TO TYPE CONVERSION FUNCTION ======
-function Convert-SyncroVariables {
+function Convert-RMMVariables {
     [CmdletBinding()]
     param()
 
@@ -211,7 +211,7 @@ function Convert-SyncroVariables {
                         $converted = $null
                     }
                 } catch {
-                    Write-Host "[Convert-SyncroVariables] ERROR: Array conversion failed"
+                    Write-Host "[Convert-RMMVariables] WARN: Array conversion failed"
                     $converted = $null
                 }
             }
@@ -221,7 +221,7 @@ function Convert-SyncroVariables {
                     Set-Variable -Name $var.Name -Value $converted -Scope 1
                     $conversionCount++
                 } catch {
-                    Write-Host "[Convert-SyncroVariables] ERROR: Failed to set variable"
+                    Write-Host "[Convert-RMMVariables] ERROR: Failed to set variable"
                 }
             }
         }
@@ -237,12 +237,12 @@ if ($env:SyncroModule) {
         Write-Warning "SyncroModule not available - continuing without it"
     }
 
-    Convert-SyncroVariables
+    Convert-RMMVariables
 }
 
 # Gorelo variables also need normalization (booleans come as strings)
 if ($GITEXEC_RMM -eq 'gorelo') {
-    Convert-SyncroVariables
+    Convert-RMMVariables
 }
 
 # ====== CUSTOMIZABLE SETTINGS ======
