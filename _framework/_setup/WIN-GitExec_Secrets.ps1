@@ -119,10 +119,10 @@
 # Gorelo RMM uses text substitution: $gorelo:varName → 'value'
 if ($PSCommandPath -like 'C:\Program Files\Gorelo\Agent\AppData\Scripts\*') {
     $GITEXEC_RMM = 'gorelo'
-    $GitExec_GitHubPAT = ${gorelo:GitExec_GitHubPAT}
-    $GitExec_RSA_Pub = ${gorelo:GitExec_RSA_Pub}
-    $force_update = ${gorelo:force_update}
-    $clear_variable = ${gorelo:clear_variable}
+    $GitExec_GitHubPAT = "$gorelo:GitExec_GitHubPAT"
+    $GitExec_RSA_Pub = "$gorelo:GitExec_RSA_Pub"
+    $force_update = "$gorelo:force_update"
+    $clear_variable = "$gorelo:clear_variable"
 }
 
 # ====== SAFE ARRAY PARSER (No Invoke-Expression) ======
