@@ -53,13 +53,40 @@ fi
 # ====== RUNTIME (don't edit below) ======
 PROJECT_VERSION="1.0.1"
 
+# Debug output function for troubleshooting failures
+print_debug_info() {
+    echo ""
+    echo "[DEBUG] Variables:" >&2
+    echo "  GITEXEC_RMM:      ${GITEXEC_RMM:-}" >&2
+    echo "  GITEXEC_ORG:      ${GITEXEC_ORG:-}" >&2
+    echo "  GITEXEC_REPO:     ${GITEXEC_REPO:-}" >&2
+    echo "  GITEXEC_BRANCH:   ${GITEXEC_BRANCH:-}" >&2
+    echo "  scriptUrl:        ${scriptUrl:-}" >&2
+    echo "  scriptUrlBase:    ${scriptUrlBase:-}" >&2
+    echo "  scriptName:       ${scriptName:-}" >&2
+    local builtUrl="${scriptUrl:-}"
+    [[ -z "$builtUrl" && -n "$scriptUrlBase" && -n "$scriptName" ]] && builtUrl="${scriptUrlBase%/}/$scriptName"
+    echo "  builtScriptUrl:   ${builtUrl:-(not set)}" >&2
+    echo "  runAsUser:        ${runAsUser:-}" >&2
+    echo "  useAPI:           ${useAPI:-}" >&2
+    echo "  runAsUserTimeout: ${runAsUserTimeout:-}" >&2
+    echo "  loggingMode:      ${loggingMode:-}" >&2
+    echo "  logRetentionDays: ${logRetentionDays:-}" >&2
+    echo "  LIB:              ${LIB:-}" >&2
+    echo "  SIG:              ${SIG:-}" >&2
+    [[ -n "${T:-}" ]] && echo "  TempLib:          $T (exists: $(test -f "$T" && echo "yes, size: $(wc -c < "$T")" || echo "no"))" >&2
+    [[ -n "${T_SIG:-}" ]] && echo "  TempSig:          $T_SIG (exists: $(test -f "$T_SIG" && echo "yes, size: $(wc -c < "$T_SIG")" || echo "no"))" >&2
+}
+
 # Validate required variables
 if [[ -z "$github_Org" ]]; then
     echo "[FATAL] github_Org is required but not set. Configure this in your RMM platform." >&2
+    print_debug_info
     exit 1
 fi
 if [[ -z "$github_Repo" ]]; then
     echo "[FATAL] github_Repo is required but not set. Configure this in your RMM platform." >&2
+    print_debug_info
     exit 1
 fi
 
@@ -82,6 +109,7 @@ thin_get_github_pat() {
         -a "gitexec_pat" \
         -w /Library/Keychains/System.keychain 2>/dev/null) || [[ -z "$pat" ]]; then
         echo "[ERROR] No PAT found. Run macOS-GitExec_Secrets.sh first." >&2
+        print_debug_info
         exit 1
     fi
     echo "$pat"
@@ -115,11 +143,13 @@ SIG="$BASE_URL/_sig/_framework/_library/macOS-GitExec-core.sh.sig"
 # SECURITY: Create temp files with restrictive permissions using mktemp
 T=$(mktemp) || {
     echo "[ERROR] Failed to create temp file" >&2
+    print_debug_info
     exit 1
 }
 T_SIG=$(mktemp) || {
     rm -f "$T"
     echo "[ERROR] Failed to create temp signature file" >&2
+    print_debug_info
     exit 1
 }
 chmod 600 "$T" "$T_SIG"
@@ -131,6 +161,7 @@ curl -fsSL \
     -H "User-Agent: GitExec/$PROJECT_VERSION" \
     "$LIB" -o "$T" 2>/dev/null || {
     echo "[ERROR] Library download failed from: $LIB" >&2
+    print_debug_info
     exit 1
 }
 
@@ -140,6 +171,7 @@ curl -fsSL \
     -H "User-Agent: GitExec/$PROJECT_VERSION" \
     "$SIG" -o "$T_SIG" 2>/dev/null || {
     echo "[ERROR] Signature download failed from: $SIG" >&2
+    print_debug_info
     exit 1
 }
 
@@ -150,6 +182,7 @@ unset GITHUB_PAT
 # Verify library signature
 thin_verify "$T" "$T_SIG" || {
     echo "[ERROR] Invalid library signature" >&2
+    print_debug_info
     exit 1
 }
 
